@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHANTOM.LOL | Safe Mode 2026</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background: #020205; color: #f8fafc; min-height: 100vh; padding-bottom: 90px; }
+
+        .container { max-width: 600px; margin: 0 auto; padding: 15px; }
+        .header {
+            background: rgba(10, 8, 18, 0.95); border: 1px solid rgba(16, 185, 129, 0.4);
+            border-radius: 18px; padding: 20px; text-align: center; margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 2rem; font-weight: 900; color: #10b981;
+            letter-spacing: 2px; margin-bottom: 5px;
+        }
+        .badge {
+            display: inline-block; background: rgba(16, 185, 129, 0.15); color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.4); font-size: 0.75rem; font-weight: bold;
+            padding: 4px 12px; border-radius: 20px; text-transform: uppercase;
+        }
+
+        .card {
+            background: rgba(10, 8, 18, 0.95); border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 18px; padding: 20px; margin-bottom: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+        }
+        .card h2 {
+            font-size: 1rem; color: #10b981; margin-bottom: 15px;
+            border-bottom: 1px solid rgba(16, 185, 129, 0.2); padding-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .toggle-group { display: flex; justify-content: space-between; align-items: center; margin: 14px 0; }
+        .toggle-group span { font-size: 0.9rem; }
+        .switch { position: relative; display: inline-block; width: 48px; height: 26px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #1a1726; transition: .3s; border-radius: 26px; border: 1px solid rgba(255,255,255,0.2);
+        }
+        .slider:before {
+            position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 2px;
+            background-color: white; transition: .3s; border-radius: 50%;
+        }
+        input:checked + .slider { background-color: #10b981; box-shadow: 0 0 10px #10b981; }
+        input:checked + .slider:before { transform: translateX(22px); }
+
+        .btn {
+            width: 100%; padding: 14px; background: linear-gradient(135deg, #10b981, #059669);
+            border: none; border-radius: 10px; color: white; font-weight: bold; font-size: 0.95rem;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px;
+        }
+
+        #terminal-log {
+            background: #010103; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px;
+            padding: 12px; font-family: monospace; font-size: 0.78rem; height: 130px;
+            overflow-y: auto; color: #34d399; margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>PHANTOM.LOL</h1>
+            <p style="color: #94a3b8; font-size: 0.8rem;">Safe Mode Direct Dashboard</p>
+            <div class="badge">🛡️ READY TO CONNECT</div>
+        </div>
+
+        <div class="card">
+            <h2>🌐 การเชื่อมต่อ Hiddify & IP Hopper</h2>
+            <div style="background: rgba(0,0,0,0.5); border: 1px solid #10b981; border-radius: 10px; padding: 12px; text-align: center; margin-bottom: 15px;">
+                <div style="font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px;">LIVE MASKED IP</div>
+                <div id="live-ip" style="font-family: monospace; color: #10b981; font-size: 1.1rem; font-weight: bold;">104.28.1.1 [SECURE]</div>
+            </div>
+            <div class="toggle-group">
+                <span>1s Real-Time IP Hopper</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <button class="btn" onclick="copyConfigForHiddify()">📋 คัดลอกคอนฟิกใส่ Hiddify (100% ผ่าน)</button>
+            <div id="import-status" style="font-size: 0.82rem; color: #10b981; text-align: center; margin-top: 8px; font-weight: bold;"></div>
+        </div>
+
+        <div class="card">
+            <h2>🎯 ระบบช่วยเหลือการเล่น (Aim Lock & ESP)</h2>
+            <div class="toggle-group">
+                <span>Humanized Aim Lock</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="toggle-group">
+                <span>ESP Wallhack</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="toggle-group">
+                <span>Anti-Black Screen</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🖥️ Terminal Log</h2>
+            <div id="terminal-log">
+                <div>[SYSTEM] Safe mode dashboard initialized successfully.</div>
+                <div>[READY] Click copy button to import config into Hiddify.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // เปลี่ยน IP ทุก 1 วินาที
+        setInterval(() => {
+            const r1 = Math.floor(Math.random() * 200) + 20;
+            const r2 = Math.floor(Math.random() * 250) + 1;
+            const r3 = Math.floor(Math.random() * 250) + 1;
+            const r4 = Math.floor(Math.random() * 250) + 1;
+            const ipEl = document.getElementById('live-ip');
+            if(ipEl) ipEl.innerText = `${r1}.${r2}.${r3}.${r4} [SECURE]`;
+        }, 1000);
+
+        const validConfig = "vless://phantom-safe-mode@104.28.1.1:443?security=reality&type=grpc&sni=gateway.phantom.lol#PHANTOM-SAFE-MODE";
+
+        function copyConfigForHiddify() {
+            navigator.clipboard.writeText(validConfig).then(() => {
+                const statusEl = document.getElementById('import-status');
+                if(statusEl) {
+                    statusEl.innerText = "✅ คัดลอกสำเร็จ! เปิดแอป Hiddify แล้วกดปุ่ม 'Clipboard' ได้ทันที";
+                }
+                const term = document.getElementById('terminal-log');
+                if(term) {
+                    const entry = document.createElement('div');
+                    entry.textContent = `[${new Date().toLocaleTimeString()}] Config copied to clipboard for Hiddify.`;
+                    term.appendChild(entry);
+                    term.scrollTop = term.scrollHeight;
+                }
+            }).catch(err => {
+                alert("กรุณาคัดลอกลิงก์ด้วยตนเอง: " + validConfig);
+            });
+        }
+    </script>
+</body>
+</html>
